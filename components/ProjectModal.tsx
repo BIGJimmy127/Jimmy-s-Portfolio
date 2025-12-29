@@ -118,7 +118,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                       animate="center"
                       exit="exit"
                       transition={{
-                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        x: { type: "tween", ease: "easeInOut", duration: 0.3 },
                         opacity: { duration: 0.2 }
                       }}
                       className="absolute inset-0 w-full h-full"
@@ -149,13 +149,13 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                     <>
                       <button
                         onClick={() => paginate(-1)}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-white/10 hover:bg-white/30 backdrop-blur-md rounded-full text-white transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-white/90 hover:bg-white backdrop-blur-md rounded-full text-slate-900 shadow-lg transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 transform hover:scale-105"
                       >
                         <ChevronLeft className="w-6 h-6" />
                       </button>
                       <button
                         onClick={() => paginate(1)}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-white/10 hover:bg-white/30 backdrop-blur-md rounded-full text-white transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-white/90 hover:bg-white backdrop-blur-md rounded-full text-slate-900 shadow-lg transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 transform hover:scale-105"
                       >
                         <ChevronRight className="w-6 h-6" />
                       </button>
