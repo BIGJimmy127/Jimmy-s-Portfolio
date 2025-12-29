@@ -10,6 +10,7 @@ export interface Project {
   highlights: string[];
   techStack?: string[];
   category: 'Data' | 'Development' | 'Strategy';
+  layoutAlign?: 'left' | 'right';
 }
 
 export interface Education {

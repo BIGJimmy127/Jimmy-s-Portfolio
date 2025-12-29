@@ -11,12 +11,12 @@ interface ProjectCardProps {
   align?: 'left' | 'right';
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ 
-  project, 
-  index, 
-  onOpen, 
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  project,
+  index,
+  onOpen,
   featured = false,
-  align = 'left' 
+  align = 'left'
 }) => {
   const isRightAligned = align === 'right';
 
@@ -29,34 +29,29 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       whileHover={{ y: -5 }}
       onClick={() => onOpen(project)}
       className={`
-        group relative flex bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer
-        ${featured ? 'flex-col lg:flex-row h-auto lg:h-[550px]' : 'flex-col h-full'}
+        group relative flex bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer will-change-transform
+        ${featured ? 'flex-col lg:flex-row h-auto lg:min-h-[550px]' : 'flex-col h-full'}
       `}
     >
       {/* Preview Image Section */}
       {project.image && (
         <div className={`
-          relative overflow-hidden bg-slate-50 order-1
+          relative overflow-hidden bg-slate-50 order-1 flex items-center justify-center
           ${featured ? 'w-full lg:w-3/5 h-72 lg:h-full' : 'w-full h-72'}
           ${featured && isRightAligned ? 'lg:order-2' : 'lg:order-1'}
         `}>
-          {/* Layer 1: Blurred Background */}
-          <div 
-            className="absolute inset-0 w-full h-full bg-cover bg-center blur-lg opacity-40 scale-110"
-            style={{ backgroundImage: `url(${project.image})` }}
-          />
-          
-          {/* Layer 2: Main Image */}
-          <img 
-            src={project.image} 
-            alt={project.title} 
+          {/* Main Image */}
+          <img
+            src={project.image}
+            alt={project.title}
             className={`
-              relative w-full h-full object-contain z-10 transition-transform duration-700 group-hover:scale-105
+              relative w-full max-h-[500px] object-contain z-10 transition-transform duration-500 group-hover:scale-105
               ${featured ? 'p-8 lg:p-12' : 'p-6'}
             `}
             loading="lazy"
+            decoding="async"
           />
-          
+
           <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
         </div>
       )}
@@ -77,30 +72,30 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             </span>
           )}
         </div>
-        
+
         <h3 className={`
           font-bold text-slate-900 mb-2 group-hover:text-apple-blue transition-colors duration-300
           ${featured ? 'text-2xl lg:text-3xl' : 'text-2xl sm:text-3xl'}
         `}>
           {project.title}
         </h3>
-        
+
         <p className="text-sm font-semibold text-slate-500 mb-6">{project.role}</p>
-        
+
         <p className={`
           text-slate-600 leading-relaxed mb-6
-          ${featured ? 'text-base lg:text-lg line-clamp-4' : 'text-base flex-grow line-clamp-3'}
+          ${featured ? 'text-base lg:text-lg' : 'text-base flex-grow'}
         `}>
           {project.description}
         </p>
 
         <div className="space-y-3 mb-8">
-            {project.highlights.slice(0, featured ? 3 : 2).map((highlight, idx) => (
-                <div key={idx} className="flex items-start">
-                    <span className="mr-2 text-apple-blue mt-1.5 text-[10px]">•</span>
-                    <span className="text-slate-500 line-clamp-2 text-sm">{highlight}</span>
-                </div>
-            ))}
+          {project.highlights.slice(0, featured ? 3 : 2).map((highlight, idx) => (
+            <div key={idx} className="flex items-start">
+              <span className="mr-2 text-apple-blue mt-1.5 text-[10px]">•</span>
+              <span className="text-slate-500 text-sm">{highlight}</span>
+            </div>
+          ))}
         </div>
 
         <div className="mt-auto pt-6 border-t border-slate-100">
@@ -110,21 +105,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 {tech}
               </span>
             ))}
-             {project.techStack && project.techStack.length > (featured ? 5 : 3) && (
-                <span className="px-3 py-1 bg-slate-50 text-slate-400 text-xs font-medium rounded-full">...</span>
-             )}
+            {project.techStack && project.techStack.length > (featured ? 5 : 3) && (
+              <span className="px-3 py-1 bg-slate-50 text-slate-400 text-xs font-medium rounded-full">...</span>
+            )}
           </div>
-          
-          <button 
+
+          <button
             className="flex items-center text-sm font-semibold text-slate-900 group-hover:text-apple-blue transition-colors outline-none focus:outline-none"
           >
             View Case Study <ArrowUpRight className="ml-1 w-4 h-4" />
           </button>
         </div>
       </div>
-      
-      {/* Decorative gradient blob */}
-      <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-slate-50 rounded-full blur-3xl opacity-0 group-hover:opacity-50 transition-opacity duration-700 pointer-events-none" />
     </motion.div>
   );
 };

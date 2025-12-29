@@ -21,6 +21,7 @@ export const PROJECTS: Project[] = [
     description: "A comprehensive geospatial dashboard analyzing global vegetation changes and land-cover correlations.",
     image: "https://i.ibb.co/7t0W6TXz/IMG-0979.jpg",
     imageAlignment: "object-center",
+    layoutAlign: "right",
     gallery: [
       "https://i.ibb.co/7t0W6TXz/IMG-0979.jpg",
       "https://i.ibb.co/VY3nM0j9/IMG-0980.jpg",
